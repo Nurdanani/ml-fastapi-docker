@@ -1,34 +1,98 @@
-﻿# ML FastAPI Docker
+﻿\# ML FastAPI Docker
 
-Классификация ирисов (Iris, RandomForest), развёрнутая как API на FastAPI и упакованная в Docker.
 
-## Структура
 
-* train.py - обучает модель и сохраняет model.joblib
-* main.py - FastAPI-приложение (GET / и POST /predict)
-* Dockerfile - инструкция для контейнера
+Классификация ирисов (датасет Iris, RandomForest), развёрнутая как API на FastAPI и упакованная в Docker. Дополнительно: отслеживание экспериментов в MLflow и интерфейс на Streamlit.
 
-## Локальный запуск
+
+
+\## Структура проекта
+
+
+
+\- `train.py` - обучает модель и сохраняет `model.joblib`
+
+\- `main.py` - FastAPI-приложение (`GET /` и `POST /predict`)
+
+\- `Dockerfile` - инструкция для контейнера
+
+\- `train\_mlflow.py` - обучение с логированием в MLflow и регистрацией модели
+
+\- `streamlit\_app.py` - веб-интерфейс на Streamlit
+
+\- `requirements.txt` - зависимости API
+
+\- `requirements-mlflow.txt` - зависимости MLflow и Streamlit
+
+
+
+\## Локальный запуск API
+
+
+
+```bash
 
 pip install -r requirements.txt
+
 python train.py
+
 uvicorn main:app --reload
+
+```
+
+
 
 Swagger: http://127.0.0.1:8000/docs
 
-## Docker
+
+
+\## Docker
+
+
+
+```bash
 
 docker build -t ml-api .
+
 docker run -p 8000:8000 ml-api
 
-## Пример запроса
+```
 
-POST /predict
+
+
+\## Пример запроса
+
+
+
+`POST /predict`
+
+
+
+```json
+
 {"sepal\_length": 5.1, "sepal\_width": 3.5, "petal\_length": 1.4, "petal\_width": 0.2}
 
-Ответ: {"prediction": 0, "class\_name": "setosa"}
+```
 
-## MLflow
+
+
+Ответ:
+
+
+
+```json
+
+{"prediction": 0, "class\_name": "setosa"}
+
+```
+
+
+
+\## MLflow
+
+
+
+```bash
 
 pip install -r requirements-mlflow.txt
 
@@ -36,21 +100,41 @@ python train\_mlflow.py
 
 mlflow ui --backend-store-uri sqlite:///mlflow.db
 
+```
 
 
-Эксперимент: iris-classification. Логируются параметры (n\_estimators, max\_depth,
 
-random\_state), метрики (accuracy, f1\_score) и артефакт model.joblib.
+Интерфейс MLflow: http://127.0.0.1:5000
 
-Модель зарегистрирована в Model Registry: iris-rf-model, version 1.
+
+
+\- Эксперимент: `iris-classification`
+
+\- Параметры: `n\_estimators`, `max\_depth`, `random\_state`
+
+\- Метрики: `accuracy`, `f1\_score`
+
+\- Артефакт: `model.joblib`
+
+\- Model Registry: модель `iris-rf-model`, версия 1
 
 
 
 \## Streamlit
 
-Сначала запустите API (docker run -p 8000:8000 ml-api), затем:
+
+
+Сначала запустите API (`docker run -p 8000:8000 ml-api`), затем:
+
+
+
+```bash
 
 streamlit run streamlit\_app.py
+
+```
+
+
 
 Интерфейс: http://localhost:8501
 
@@ -58,5 +142,7 @@ streamlit run streamlit\_app.py
 
 \## Скриншоты
 
-См. папку search-ms:displayname=Результаты%20поиска%20в%20"Рабочий%20стол"\&crumb=location:C%3A%5CUsers%5Cacer%5CDesktop\\screenshots\_ml
+
+
+Скриншоты MLflow (запуск, метрики, артефакты, Model Registry) и интерфейса Streamlit находятся в папке \[screenshots](screenshots/).
 
