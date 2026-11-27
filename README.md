@@ -16,9 +16,9 @@
 
 \- `Dockerfile` - инструкция для контейнера
 
-\- `train\_mlflow.py` - обучение с логированием в MLflow и регистрацией модели
+\- `train_mlflow.py` - обучение с логированием в MLflow и регистрацией модели
 
-\- `streamlit\_app.py` - веб-интерфейс на Streamlit
+\- `streamlit_app.py` - веб-интерфейс на Streamlit
 
 \- `requirements.txt` - зависимости API
 
@@ -70,7 +70,7 @@ docker run -p 8000:8000 ml-api
 
 ```json
 
-{"sepal\_length": 5.1, "sepal\_width": 3.5, "petal\_length": 1.4, "petal\_width": 0.2}
+{"sepal_length": 5.1, "sepal_width": 3.5, "petal_length": 1.4, "petal_width": 0.2}
 
 ```
 
@@ -82,7 +82,7 @@ docker run -p 8000:8000 ml-api
 
 ```json
 
-{"prediction": 0, "class\_name": "setosa"}
+{"prediction": 0, "class_name": "setosa"}
 
 ```
 
@@ -96,7 +96,7 @@ docker run -p 8000:8000 ml-api
 
 pip install -r requirements-mlflow.txt
 
-python train\_mlflow.py
+python train_mlflow.py
 
 mlflow ui --backend-store-uri sqlite:///mlflow.db
 
@@ -110,9 +110,9 @@ mlflow ui --backend-store-uri sqlite:///mlflow.db
 
 \- Эксперимент: `iris-classification`
 
-\- Параметры: `n\_estimators`, `max\_depth`, `random\_state`
+\- Параметры: `n_estimators`, `max_depth`, `random_state`
 
-\- Метрики: `accuracy`, `f1\_score`
+\- Метрики: `accuracy`, `f1_score`
 
 \- Артефакт: `model.joblib`
 
@@ -130,7 +130,7 @@ mlflow ui --backend-store-uri sqlite:///mlflow.db
 
 ```bash
 
-streamlit run streamlit\_app.py
+streamlit run streamlit_app.py
 
 ```
 
@@ -145,4 +145,5 @@ streamlit run streamlit\_app.py
 
 
 Скриншоты MLflow (запуск, метрики, артефакты, Model Registry) и интерфейса Streamlit находятся в папке \[screenshots](screenshots/).
+
 
