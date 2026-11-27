@@ -58,5 +58,5 @@ streamlit run streamlit\_app.py
 
 \## Скриншоты
 
-См. папку C:\\Users\\acer\\Desktop\\screenshots\_ml
+См. папку search-ms:displayname=Результаты%20поиска%20в%20"Рабочий%20стол"\&crumb=location:C%3A%5CUsers%5Cacer%5CDesktop\\screenshots\_ml
 
